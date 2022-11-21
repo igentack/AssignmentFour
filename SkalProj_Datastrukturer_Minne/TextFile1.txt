@@ -1,1 +1,31 @@
-﻿
+﻿Övning 4 - Minneshantering
+
+Frågor:
+
+1 & 2. I stacken återfinns i regel dem mer fundamentala data typerna, s.k. value types (int bool long char Date osv) och pointers. 
+   Dock kan value types ibland återfinnas i den s.k. heapen också, beroende på klasstillhörighet och vad kompilatorn tycker passar
+   dem aktuella referens objekten bäst. När man kopierar en value type kopierar man själva valuetypeobjektet i sig, och ändrar man en kopia är det endast kopian som ändras.
+
+   På den s.k. heapen återfinns dem faktiska objekten (objects strings interfaces arrays osv) som till skillnad mot
+   value types - vid kopiering - endast kopierar en referens till det faktiska objektet, inte objektet i sig självt. Och ändrar men objektet från 
+   någon av referenserna kommer då båda referenserna, peka på samma, ändrade, objekt.
+   
+   Stackan är mer ansvarig för alla instruktioner som skall exekveras, medan heapen mer har hand om den faktiska datan.  
+
+3. Det första exemplet är en value type av typen int, och int typen tar endast kopior och själva värdet ligger kvar i variabeln, och ofta stacken. 
+   Det andra exemplet är en referens typ och där kopieras bara en ny referens - till samma objekt, dvs själva objektet förändras ej. Båda pointer/referenser pekar till samma objekt
+   på heapen (oftast).
+
+Övning 1.
+2. Den underliggande arrayen ökar när listas minnesallokering kommit "i kapp" den initiala arrayen.
+3. Kapaciteten på den underliggande arrayen, ökar exponentiellt. 
+4. En anledning kanske är för att listan bygger på en dynamisk array, och kanske för att den skulle kräva ännu mer tid och minne fall den arrayen skulle behöva kopiera sig 
+   själv i samma frekvens som listan.
+5. Nej.
+6. Det kan vara när man vet exakt hur många element man behöver, kanske för parametrar samt inte nödvändigtvis behöver iterera (går med arrayer också iofs). 
+   Är det noga med minnesallokeringen kan man kanske använda sig av TrimExcess metoden. 
+
+Övning 6 - Fråga:
+
+
+
