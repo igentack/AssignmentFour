@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Linq;
 
 namespace SkalProj_Datastrukturer_Minne
 {
     class Program
     {
+
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
@@ -16,7 +20,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
+                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3, 4, 5, 6, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Turn around a word"
@@ -49,10 +53,10 @@ namespace SkalProj_Datastrukturer_Minne
                         CheckParanthesis();
                         break;
                     case '5':
-                        RecursiveFibonacci();
+                        RecursiveEven(10);
                         break;
                     case '6':
-                        IterativeFibonacci();
+                        IterativeFibonacci(10);
                         break;
                     /*
                      * Extend the menu to include the recursive 
@@ -73,10 +77,7 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineList()
         {
-            static void Tess()
-            {
-                Console.WriteLine($"testar");
-            }
+       
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch statement with cases '+' and '-'
@@ -96,12 +97,12 @@ namespace SkalProj_Datastrukturer_Minne
             List<string> theList = new List<string>();
             while (true)
             {
-                Console.WriteLine("Hi you could either push + OR - together with a name \n or you could just choose + OR -, your choice"
-                    + "\n1. + and a name (or just +)"
-                    + "\n2. - and a name to remove (or just -)"
+                Console.WriteLine("Hej skriv (+ el -) tillsammans med ett namn \neller bara + el -\n"
+                    + "\n1. Prova"
+                   // + "\n2. - och namn för att ta bort (eller bara -)"
                     //+ "\n3. just +"
                     //+ "\n4. just -"
-                    + "\n0. Exit");
+                    + "\n0. Avsluta");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
                 {
@@ -110,32 +111,74 @@ namespace SkalProj_Datastrukturer_Minne
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
                 {
                     Console.Clear();
-                    Console.WriteLine("Please enter some input!");
+                    Console.WriteLine("Please enter some Value!");
                 }
                 switch (input)
                 {
                     case '1':
-                        Console.Write("Skriv in namn: ");
-                        string name = Console.ReadLine();
-                        //string value = input.substring(1);
-                        if (name.Length == 0)
-                            name = "harry";
-                        theList.Add(name);
-
-                        foreach (var item in theList)
+                        Console.Write("Skriv in namn (alternativt bara '+' el. '-' ) här: ");
+                        string namePlusMinus = Console.ReadLine();
+                                                               
+                        if (namePlusMinus.StartsWith("+"))
                         {
-                            Console.WriteLine(item);
+                            string name = namePlusMinus.Substring(1).ToUpper();
+                            if (name == "")
+                            {
+                                name = "HARRY";
+                                theList.Add(name);
+                            }
+                            else
+                            {
+                                theList.Add(name);
+                            }
+                            PrintList(theList);
+                            break;
                         }
-                        Console.WriteLine(theList.Count);
-                        Tess();
-                        Console.WriteLine(theList.Capacity);
-                        Console.WriteLine();
+                        if (namePlusMinus.StartsWith("-"))
+                        {
+                            string name = namePlusMinus.Substring(1).ToUpper();
+                            if (name != null)
+                            {
+                                theList.Remove(name);
+                            }
+                            else
+                            {
+                                if (theList != null)
+                                    theList.RemoveAt(0);
+                            }
+                            PrintList(theList);
+                            break;
+                            //theList.Remove(name);
+                        }
+                     
+                        Console.WriteLine("\n   *** You have to write at least + or - as input ***\n +" +
+                            "nothing got added");
+                        
+            
+                        //else if (namePlusMinus.Length == 0)
+                        //{
+                        //    name = "Harry";
+                        //    theList.Add(name);
+                        //}
+                        PrintList(theList);
+
+                        //foreach (var item in theList)
+                        //{
+                        //    Console.WriteLine($"Namn:\t {item}");
+                        //}
+                        //Console.WriteLine($"Medlemmar i listan:\t {theList.Count}\n" +
+                        //                  $"Listans kapacitet:\t  {theList.Capacity}\n");
+                        //Tess();
+                        //Console.WriteLine(theList.Capacity);
+                        //Console.WriteLine();
                         break;
                     case '2':
-                        theList.RemoveAt(0);
-                        Console.WriteLine(theList.Count);
-                        Console.WriteLine(theList.Capacity);
-                        Console.WriteLine();
+                        if (theList != null)
+                            theList.RemoveAt(0);
+                        PrintList(theList);
+                        //Console.WriteLine(theList.Count);
+                        //Console.WriteLine(theList.Capacity);
+                        //Console.WriteLine();
                         break;
                     case '3':
                         ExamineStack();
@@ -154,6 +197,15 @@ namespace SkalProj_Datastrukturer_Minne
                         Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
                         break;
                 }
+            }
+            static void PrintList(List<string> theList)
+            {
+                foreach (var item in theList)
+                {
+                    Console.WriteLine($"Namn:\t {item}");
+                }
+                Console.WriteLine($"Medlemmar i listan:\t{theList.Count}\n" +
+                                  $"Listans kapacitet:\t{theList.Capacity}\n");
             }
         }
 
@@ -346,13 +398,20 @@ namespace SkalProj_Datastrukturer_Minne
                 }
             }
         }
-        static void RecursiveFibonacci()
+        static int RecursiveEven(int n)
         {
-            Console.WriteLine("Time for föda");
-        }
-        static void IterativeFibonacci(){
+            if (n == 2)
+            {
+                return 2;
+            }
+            Console.Write(n);
             
-            int n = 15;
+            Console.ReadLine();
+            return (RecursiveEven(n - 2) + 2);
+        }
+      
+        static void IterativeFibonacci(int n){
+            
             int a = 0;
             int b = 0;
             int c = 1;
