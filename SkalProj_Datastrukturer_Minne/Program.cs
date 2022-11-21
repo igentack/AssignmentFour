@@ -25,7 +25,7 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Turn around a word"
                     + "\n4. CheckParanthesis"
-                    + "\n5. Recursive Fibonacci"
+                    + "\n5. Recursive Even"
                     + "\n6. Iterative Fibonacci"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
@@ -143,8 +143,8 @@ namespace SkalProj_Datastrukturer_Minne
                             break;
                         }
 
-                        Console.WriteLine("\n   *** You have to write at least + or - as input ***\n +" +
-                            "nothing got added");
+                        Console.WriteLine("\n   *** You have to write at least + or - as input\n - " +
+                            "else nothing gets added ***");
 
                         PrintList(theList!);
                         break;
@@ -281,6 +281,7 @@ namespace SkalProj_Datastrukturer_Minne
                     case '1':
                         Console.Write("Skriv in här: ");
                         string word = Console.ReadLine()!;
+                        
                         for (int i = 0; i < word.Length; i++)
                         {
                             stack.Push(word[i]);
@@ -340,7 +341,8 @@ namespace SkalProj_Datastrukturer_Minne
                             {
                                 parStack.Push(stringToChar[0]);
                             }
-                            if (parStack.Peek() == '(' && stringToChar.Contains(')') || (parStack.Peek() == '{' && stringToChar.Contains('}') || (parStack.Peek() == '[' && stringToChar.Contains(']'))))
+                            if (parStack.Peek() == '(' && stringToChar.Contains(')') || (parStack.Peek() == '{' && 
+                                stringToChar.Contains('}') || (parStack.Peek() == '[' && stringToChar.Contains(']'))))
                             {
                                 parStack.Pop();
                             }
