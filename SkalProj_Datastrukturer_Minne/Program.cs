@@ -99,9 +99,6 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 Console.WriteLine("Hej skriv (+ el -) tillsammans med ett namn \neller bara + el -\n"
                     + "\n1. Prova"
-                   // + "\n2. - och namn för att ta bort (eller bara -)"
-                    //+ "\n3. just +"
-                    //+ "\n4. just -"
                     + "\n0. Avsluta");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -137,54 +134,23 @@ namespace SkalProj_Datastrukturer_Minne
                         if (namePlusMinus.StartsWith("-"))
                         {
                             string name = namePlusMinus.Substring(1).ToUpper();
-                            if (name != null)
+                            if (name == "")
                             {
-                                theList.Remove(name);
+                                theList.RemoveAt(0);
                             }
                             else
                             {
                                 if (theList != null)
-                                    theList.RemoveAt(0);
+                                    theList.Remove(name);
                             }
                             PrintList(theList);
                             break;
-                            //theList.Remove(name);
                         }
                      
                         Console.WriteLine("\n   *** You have to write at least + or - as input ***\n +" +
                             "nothing got added");
-                        
-            
-                        //else if (namePlusMinus.Length == 0)
-                        //{
-                        //    name = "Harry";
-                        //    theList.Add(name);
-                        //}
-                        PrintList(theList);
 
-                        //foreach (var item in theList)
-                        //{
-                        //    Console.WriteLine($"Namn:\t {item}");
-                        //}
-                        //Console.WriteLine($"Medlemmar i listan:\t {theList.Count}\n" +
-                        //                  $"Listans kapacitet:\t  {theList.Capacity}\n");
-                        //Tess();
-                        //Console.WriteLine(theList.Capacity);
-                        //Console.WriteLine();
-                        break;
-                    case '2':
-                        if (theList != null)
-                            theList.RemoveAt(0);
                         PrintList(theList);
-                        //Console.WriteLine(theList.Count);
-                        //Console.WriteLine(theList.Capacity);
-                        //Console.WriteLine();
-                        break;
-                    case '3':
-                        ExamineStack();
-                        break;
-                    case '4':
-                        CheckParanthesis();
                         break;
                     /*
                      * Extend the menu to include the recursive 
@@ -194,7 +160,7 @@ namespace SkalProj_Datastrukturer_Minne
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+                        Console.WriteLine("Please enter some valid input (0, 1)");
                         break;
                 }
             }
