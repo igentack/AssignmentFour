@@ -114,7 +114,7 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     case '1':
                         Console.Write("Skriv in namn (alternativt bara '+' el. '-' ) här: ");
-                        string namePlusMinus = Console.ReadLine();
+                        string namePlusMinus = Console.ReadLine()!;
                                                                
                         if (namePlusMinus.StartsWith("+"))
                         {
@@ -122,11 +122,11 @@ namespace SkalProj_Datastrukturer_Minne
                             if (name == "")
                             {
                                 name = "HARRY";
-                                theList.Add(name);
+                                theList!.Add(name);
                             }
                             else
                             {
-                                theList.Add(name);
+                                theList!.Add(name);
                             }
                             PrintList(theList);
                             break;
@@ -136,21 +136,21 @@ namespace SkalProj_Datastrukturer_Minne
                             string name = namePlusMinus.Substring(1).ToUpper();
                             if (name == "")
                             {
-                                theList.RemoveAt(0);
+                                theList!.RemoveAt(0);
                             }
                             else
                             {
                                 if (theList != null)
                                     theList.Remove(name);
                             }
-                            PrintList(theList);
+                            PrintList(theList!);
                             break;
                         }
                      
                         Console.WriteLine("\n   *** You have to write at least + or - as input ***\n +" +
                             "nothing got added");
 
-                        PrintList(theList);
+                        PrintList(theList!);
                         break;
                     /*
                      * Extend the menu to include the recursive 
@@ -209,32 +209,34 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     case '1':
                         Console.Write("Skriv in namn: ");
-                        string name = Console.ReadLine();
-                        //string value = input.substring(1);
+                        string name = Console.ReadLine()!;                     
                         if (name.Length == 0)
-                            name = "harry";
-                        theQue.Enqueue($"{name} - tar det lång tid?");
+                            name = "Harry";
+                        theQue!.Enqueue($"\t{name} - tar det lång tid?");
 
                         foreach (var item in theQue)
                         {
                             Console.WriteLine(item);
                         }
-                        Console.WriteLine(theQue.Count);
-                        //Tess();
-                        //Console.WriteLine(theQue.Capacity);
-                        Console.WriteLine();
+                        Console.WriteLine($"\n{theQue.Count}\n");
+                       // Console.WriteLine();
                         break;
                     case '2':
-                        if (theQue.Count() == 0)
+                        if (theQue!.Count() == 0)
                             Console.WriteLine("Du är först i kön :)");
-                        break;
-                        theQue.Dequeue();
-                        Console.WriteLine(theQue.Count);
+
+                        theQue!.Dequeue();
+                        //Console.WriteLine(theQue.Count);
                         //Console.WriteLine(theQue.Capacity);
                         Console.WriteLine();
                         break;
                     case '3':
-                        theQue.Peek();
+                        if (theQue == null)
+                        {
+                            Console.WriteLine("Kön verkar tom");
+                        }
+                        else
+                        //theQue.Peek();
                         Console.WriteLine("{0} Det blir strax din tur", theQue.Peek());
                         break;
                     case '0':
@@ -259,7 +261,7 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             Stack stack = new Stack();
-            string drow = "";
+            //string drow = "";
             Console.WriteLine("\nHej skriv in ett valfritt ord.");
             while (true)
             {
@@ -280,14 +282,14 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     case '1':
                         Console.Write("Skriv in här: ");
-                        string word = Console.ReadLine();
+                        string word = Console.ReadLine()!;
                         for (int i = 0; i < word.Length; i++)
                         {
                             stack.Push(word[i]);
                         }
-                        drow = String.Join("", stack.ToArray());
-                        Console.WriteLine();
-                        Console.WriteLine(drow);
+                        //drow = String.Join("", stack.ToArray());
+                        Console.WriteLine(String.Join("", stack.ToArray()));
+                        //Console.WriteLine($"\n{drow}");
                         break;
                     case '0':
                         Main();
@@ -330,7 +332,7 @@ namespace SkalProj_Datastrukturer_Minne
                     case '1':
                         Console.Write("Skriv in parantessträngen: ");
 
-                        string inputParenthesis = Console.ReadLine();
+                        string inputParenthesis = Console.ReadLine()!;
                         char[] stringToChar = inputParenthesis.ToCharArray();
 
                         for (int i = 0; i < stringToChar.Length; i++)
