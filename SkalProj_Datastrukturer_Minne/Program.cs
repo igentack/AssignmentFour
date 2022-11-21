@@ -26,7 +26,9 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n3. Turn around a word"
                     + "\n4. CheckParanthesis"
                     + "\n5. Recursive Even"
-                    + "\n6. Iterative Fibonacci"
+                    + "\n6. Rescursive Fibonacci"
+                    + "\n7. Iterative Even"
+                    + "\n8. Iterative Fibonacci"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -56,6 +58,12 @@ namespace SkalProj_Datastrukturer_Minne
                         RecursiveEven(10);
                         break;
                     case '6':
+                        RecursiveFibonacci(10);
+                        break;
+                    case '7':
+                        IterativeEven(10);
+                        break;
+                    case '8':
                         IterativeFibonacci(10);
                         break;
                     case '0':
@@ -314,6 +322,7 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 Console.WriteLine(""
                     + "\n1. Prova"
+                    + "\n2. Eller varför inte prova en rekursiv Fibonacci sekvens?"
                     + "\n0. Tillbaka till huvudmenyn");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -357,6 +366,16 @@ namespace SkalProj_Datastrukturer_Minne
                             Console.WriteLine("No balance!");
                             break;
                         }
+                    case '2':
+                        Console.Write("Skriv önskat antal för Fibonaccisekvensen: ");
+                        string answer = Console.ReadLine()!;
+                        int antal =Int32.Parse(answer);
+
+                        for (int i = 0; i < antal; i++)
+                        {
+                            Console.Write(RecursiveFibonacci(i) + " ");
+                        }
+                        break;
                     case '0':
                         Main();
                         break;
@@ -372,10 +391,33 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 return 2;
             }
-            Console.Write(n);
+            Console.Write(n +" ");
 
-            Console.ReadLine();
             return (RecursiveEven(n - 2) + 2);
+        }
+
+        static int RecursiveFibonacci(int n)
+        {   
+            if (n == 0 || n == 1)
+            {
+                return n;
+            }
+            else
+            {            
+                return RecursiveFibonacci(n - 1) + RecursiveFibonacci(n - 2);
+            }
+
+        }
+
+        static void IterativeEven(int n)
+        {
+            int result = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                result += 2;
+                Console.Write(result + " ");
+            }
         }
 
         static void IterativeFibonacci(int n)
@@ -396,8 +438,6 @@ namespace SkalProj_Datastrukturer_Minne
                 c = between + c;
             }
             Console.ReadLine();
-
-
         }
 
     }
