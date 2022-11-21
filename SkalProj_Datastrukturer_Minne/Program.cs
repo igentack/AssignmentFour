@@ -24,11 +24,10 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Turn around a word"
-                    + "\n4. CheckParanthesis"
+                    + "\n4. CheckParanthesis OR try a recursive Fibonacci sequence"
                     + "\n5. Recursive Even"
-                    + "\n6. Rescursive Fibonacci"
-                    + "\n7. Iterative Even"
-                    + "\n8. Iterative Fibonacci"
+                    + "\n6. Iterative Even"
+                    + "\n7. Iterative Fibonacci"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -58,12 +57,9 @@ namespace SkalProj_Datastrukturer_Minne
                         RecursiveEven(10);
                         break;
                     case '6':
-                        RecursiveFibonacci(10);
-                        break;
-                    case '7':
                         IterativeEven(10);
                         break;
-                    case '8':
+                    case '7':
                         IterativeFibonacci(10);
                         break;
                     case '0':
@@ -92,12 +88,7 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
-            //theList.Add(value);
-
-            //switch(nav){...}
+            // Här deklarerar och instansierar jag listan.
             List<string> theList = new List<string>();
             while (true)
             {
@@ -119,19 +110,22 @@ namespace SkalProj_Datastrukturer_Minne
                     case '1':
                         Console.Write("Skriv in namn (alternativt bara '+' el. '-' ) här: ");
                         string namePlusMinus = Console.ReadLine()!;
-
+                        // Ifall inputsträngen startar med +
                         if (namePlusMinus.StartsWith("+"))
-                        {
+                        {   // Använder nästkommande del i strängen och gör dem till stora bokstäver
                             string name = namePlusMinus.Substring(1).ToUpper();
+                            // Fall strängen endast är ett + läggs namnet HARRY till som default
                             if (name == "")
                             {
                                 name = "HARRY";
                                 theList!.Add(name);
                             }
+                            // Annars läggs resten av strängen till
                             else
                             {
                                 theList!.Add(name);
                             }
+                            // Sedan printas hela listan ut
                             PrintList(theList);
                             break;
                         }
@@ -266,7 +260,6 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             Stack stack = new Stack();
-            //string drow = "";
             Console.WriteLine("\nVända på ord.");
             while (true)
             {
@@ -289,10 +282,10 @@ namespace SkalProj_Datastrukturer_Minne
                         Console.Write("Skriv in här: ");
                         string word = Console.ReadLine()!;
                         
-                        for (int i = 0; i < word.Length; i++)
-                        {
-                            stack.Push(word[i]);
-                        }
+                            for (int i = 0; i < word.Length; i++)
+                            {
+                                stack.Push(word[i]);
+                            }
 
                         Console.WriteLine(String.Join("", stack.ToArray()));
                         stack.Clear();
