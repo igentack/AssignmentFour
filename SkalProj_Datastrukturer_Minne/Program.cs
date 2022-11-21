@@ -58,10 +58,6 @@ namespace SkalProj_Datastrukturer_Minne
                     case '6':
                         IterativeFibonacci(10);
                         break;
-                    /*
-                     * Extend the menu to include the recursive 
-                     * and iterative exercises.
-                     */
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -77,7 +73,7 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineList()
         {
-       
+
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch statement with cases '+' and '-'
@@ -115,7 +111,7 @@ namespace SkalProj_Datastrukturer_Minne
                     case '1':
                         Console.Write("Skriv in namn (alternativt bara '+' el. '-' ) här: ");
                         string namePlusMinus = Console.ReadLine()!;
-                                                               
+
                         if (namePlusMinus.StartsWith("+"))
                         {
                             string name = namePlusMinus.Substring(1).ToUpper();
@@ -146,16 +142,12 @@ namespace SkalProj_Datastrukturer_Minne
                             PrintList(theList!);
                             break;
                         }
-                     
+
                         Console.WriteLine("\n   *** You have to write at least + or - as input ***\n +" +
                             "nothing got added");
 
                         PrintList(theList!);
                         break;
-                    /*
-                     * Extend the menu to include the recursive 
-                     * and iterative exercises.
-                     */
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -216,12 +208,15 @@ namespace SkalProj_Datastrukturer_Minne
                         theQue!.Enqueue(name);
                         Console.WriteLine($"Hej {name}!");
                         break;
-                    case if (theQue!.Count() == 0)
+                    case '2':
+                        if (theQue!.Count() == 0)
                         {
                             Console.WriteLine("Kön verkar tom");
                             break;
                         }
 
+                        Console.WriteLine($"tack för besöket {theQue.Peek()} - Välkommen åter!");
+                        theQue.Dequeue();
                         PrintQue(theQue);
                         break;
                     case '3':
@@ -232,12 +227,6 @@ namespace SkalProj_Datastrukturer_Minne
                         else
                             Console.WriteLine("{0} Det blir strax din tur", theQue.Peek());
                         PrintQue(theQue);
-                        break;
-                    case '0':
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3)");
                         break;
                     case '0':
                         Environment.Exit(0);
@@ -270,7 +259,7 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             Stack stack = new Stack();
-            
+            //string drow = "";
             Console.WriteLine("\nVända på ord.");
             while (true)
             {
@@ -296,8 +285,10 @@ namespace SkalProj_Datastrukturer_Minne
                         {
                             stack.Push(word[i]);
                         }
+
                         Console.WriteLine(String.Join("", stack.ToArray()));
                         stack.Clear();
+
                         break;
                     case '0':
                         Main();
@@ -381,13 +372,14 @@ namespace SkalProj_Datastrukturer_Minne
                 return 2;
             }
             Console.Write(n);
-            
+
             Console.ReadLine();
             return (RecursiveEven(n - 2) + 2);
         }
-      
-        static void IterativeFibonacci(int n){
-            
+
+        static void IterativeFibonacci(int n)
+        {
+
             int a = 0;
             int b = 0;
             int c = 1;
@@ -395,7 +387,7 @@ namespace SkalProj_Datastrukturer_Minne
             while (a < n)
             {
                 a += 1;
-                
+
                 Console.Write(b + " ");
 
                 int between = b;
