@@ -143,8 +143,7 @@ namespace SkalProj_Datastrukturer_Minne
                             break;
                         }
 
-                        Console.WriteLine("\n   *** You have to write at least + or - as input\n - " +
-                            "else nothing gets added ***");
+                        Console.WriteLine("\n   *** You have to write at least + or - as input, else nothing gets added ***");
 
                         PrintList(theList!);
                         break;
