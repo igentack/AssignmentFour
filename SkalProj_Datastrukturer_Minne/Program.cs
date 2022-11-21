@@ -191,9 +191,8 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 Console.WriteLine("Hej och välkommen till Ica \n"
                     + "\n1. Ställ dig i kön."
-                    + "\n2. Tack för besöket - hoppas godiset är gott :)"
-                    + "\n3. När är det min tur?"
-                    //+ "\n4. just -"
+                    + "\n2. Expidiering av en kund."
+                    + "\n3. Se kön."
                     + "\n0. Exit");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -209,43 +208,50 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     case '1':
                         Console.Write("Skriv in namn: ");
-                        string name = Console.ReadLine()!;                     
+                        string name = Console.ReadLine()!;
+                        Console.WriteLine();
                         if (name.Length == 0)
                             name = "Harry";
-                        theQue!.Enqueue($"\t{name} - tar det lång tid?");
-
-                        foreach (var item in theQue)
-                        {
-                            Console.WriteLine(item);
-                        }
-                        Console.WriteLine($"\n{theQue.Count}\n");
-                       // Console.WriteLine();
+                        
+                        theQue!.Enqueue(name); 
+                        Console.WriteLine($"Hej {name}!");
                         break;
                     case '2':
                         if (theQue!.Count() == 0)
-                            Console.WriteLine("Du är först i kön :)");
+                        {
+                            Console.WriteLine("Kön verkar tom");
+                            break;
+                        }
 
-                        theQue!.Dequeue();
-                        //Console.WriteLine(theQue.Count);
-                        //Console.WriteLine(theQue.Capacity);
-                        Console.WriteLine();
+                        Console.WriteLine($"tack för besöket {theQue.Peek()} - Välkommen åter!");
+                        theQue.Dequeue();
+                        PrintQue(theQue);
                         break;
                     case '3':
-                        if (theQue == null)
+                        if (theQue.Count() == 0)
                         {
                             Console.WriteLine("Kön verkar tom");
                         }
                         else
-                        //theQue.Peek();
                         Console.WriteLine("{0} Det blir strax din tur", theQue.Peek());
+                        PrintQue(theQue);
                         break;
                     case '0':
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3)");
                         break;
                 }
+            }
+            static void PrintQue(Queue<string> theQue)
+            {
+                Console.WriteLine();
+                foreach (var item in theQue)
+                {
+                    Console.WriteLine($"\t{item}");
+                }
+                Console.WriteLine($"\n\tAntal kunder: {theQue.Count}\n");
             }
         }
 
@@ -262,7 +268,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             Stack stack = new Stack();
             //string drow = "";
-            Console.WriteLine("\nHej skriv in ett valfritt ord.");
+            Console.WriteLine("\nVända på ord.");
             while (true)
             {
                 Console.WriteLine(""
@@ -289,13 +295,14 @@ namespace SkalProj_Datastrukturer_Minne
                         }
                         //drow = String.Join("", stack.ToArray());
                         Console.WriteLine(String.Join("", stack.ToArray()));
+                        stack.Clear();
                         //Console.WriteLine($"\n{drow}");
                         break;
                     case '0':
                         Main();
                         break;
                     default:
-                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+                        Console.WriteLine("Please enter some valid input (0, 1)");
                         break;
                 }
             }
