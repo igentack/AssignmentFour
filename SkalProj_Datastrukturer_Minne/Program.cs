@@ -212,19 +212,16 @@ namespace SkalProj_Datastrukturer_Minne
                         Console.WriteLine();
                         if (name.Length == 0)
                             name = "Harry";
-                        
-                        theQue!.Enqueue(name); 
+
+                        theQue!.Enqueue(name);
                         Console.WriteLine($"Hej {name}!");
                         break;
-                    case '2':
-                        if (theQue!.Count() == 0)
+                    case if (theQue!.Count() == 0)
                         {
                             Console.WriteLine("Kön verkar tom");
                             break;
                         }
 
-                        Console.WriteLine($"tack för besöket {theQue.Peek()} - Välkommen åter!");
-                        theQue.Dequeue();
                         PrintQue(theQue);
                         break;
                     case '3':
@@ -233,8 +230,14 @@ namespace SkalProj_Datastrukturer_Minne
                             Console.WriteLine("Kön verkar tom");
                         }
                         else
-                        Console.WriteLine("{0} Det blir strax din tur", theQue.Peek());
+                            Console.WriteLine("{0} Det blir strax din tur", theQue.Peek());
                         PrintQue(theQue);
+                        break;
+                    case '0':
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3)");
                         break;
                     case '0':
                         Environment.Exit(0);
@@ -267,7 +270,7 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             Stack stack = new Stack();
-            //string drow = "";
+            
             Console.WriteLine("\nVända på ord.");
             while (true)
             {
@@ -293,10 +296,8 @@ namespace SkalProj_Datastrukturer_Minne
                         {
                             stack.Push(word[i]);
                         }
-                        //drow = String.Join("", stack.ToArray());
                         Console.WriteLine(String.Join("", stack.ToArray()));
                         stack.Clear();
-                        //Console.WriteLine($"\n{drow}");
                         break;
                     case '0':
                         Main();
