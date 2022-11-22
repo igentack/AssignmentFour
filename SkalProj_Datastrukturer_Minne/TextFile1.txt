@@ -27,5 +27,9 @@ Frågor:
 
 Övning 6 - Fråga:
 
+Utan att ta hänsyn - samt härligt generaliserat - till dem olika variabler som faktiskt kan spela roll, program, till vad, hur stort, för skalbarhet osv, blir
+mitt svar en iterativ loop tillsammans med en förutbestämd array.
 
+En iterativ loop har i detta fall oftast en O(n) linjär tids och O(1) rums komplexitet, medan en rekursiv iteration oftast har O(n^2) i tid och O(n) i rum. 
+Mitt val hade utifrån bästa scenario då varit att ha en iterativ process, tillsammans med en förutbestämd array. 
 
